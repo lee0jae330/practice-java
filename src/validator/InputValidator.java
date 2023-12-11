@@ -1,5 +1,7 @@
 package validator;
 
+import exception.InvalidInputException;
+
 public class InputValidator {
     public static int checkNumberInputValidation(String input) {
         checkInputIsEmpty(input);
@@ -14,7 +16,7 @@ public class InputValidator {
 
     private static void checkInputIsEmpty(String input) {
         if(input.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InvalidInputException();
         }
     }
 
@@ -22,7 +24,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new InvalidInputException();
         }
     }
 }

@@ -1,5 +1,6 @@
 package validator;
 
+import exception.InvalidAccountException;
 import java.util.regex.Pattern;
 
 public class AccountValidator {
@@ -14,19 +15,19 @@ public class AccountValidator {
 
     private static void checkAccountNumber(String accountNumber) {
         if(!Pattern.matches(ACCOUNT_NUMBER_REGEXP,accountNumber)) {
-            throw new IllegalArgumentException();
+            throw new InvalidAccountException();
         }
     }
 
     private static void checkAccountOwner(String accountOwner) {
         if(!Pattern.matches(ACCOUNT_OWNER_REGEXP,accountOwner)) {
-            throw new IllegalArgumentException();
+            throw new InvalidAccountException();
         }
     }
 
     private static void checkInitAmount(int initAmount) {
         if(initAmount < minimumOfInitAmount) {
-            throw new IllegalArgumentException();
+            throw new InvalidAccountException();
         }
     }
 }

@@ -1,5 +1,6 @@
 package validator;
 
+import exception.InvalidSelectionException;
 import util.ConstantOfSelection;
 
 public class SelectionValidator {
@@ -9,7 +10,7 @@ public class SelectionValidator {
 
     public static void selectionValidator(int selection) {
         if(selection < minimumOfSelection || selection > maximumOfSelection) {
-            throw new IllegalArgumentException();
+            throw new InvalidSelectionException();
         }
     }
 }

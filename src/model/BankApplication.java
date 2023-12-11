@@ -10,11 +10,12 @@ public class BankApplication {
         accounts.add(account);
     }
 
-    public List<Account> getAccounts() throws CloneNotSupportedException {
-        List<Account> copyAccounts = new ArrayList<>();
-        for (Account account : accounts) {
-            copyAccounts.add((Account) account.clone());
+    public List<String> getAllAccountInformation() {
+        List<String> allAccountInformation = new ArrayList<>();
+        for(Account account : accounts) {
+            String information = account.getAccountInformation();
+            allAccountInformation.add(information);
         }
-        return copyAccounts;
+        return allAccountInformation;
     }
 }

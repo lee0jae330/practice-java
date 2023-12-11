@@ -5,7 +5,7 @@ public enum OutputViewMessage {
     HYPHEN("-"),
     MENUS("1.계좌생성 | 2.계좌목록 | 3.예금 | 4.출금 | 5.종료"),
     CREATE("계좌생성"),
-    ShOW_ACCOUNTS("계좌목록"),
+    SHOW_ACCOUNTS("계좌목록"),
     DEPOSIT("예금"),
     WITHDRAW("출금"),
     CREATE_RESULT("결과: 계좌가 생성되었습니다."),

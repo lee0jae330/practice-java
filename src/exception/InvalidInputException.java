@@ -1,7 +1,9 @@
 package exception;
 
-public abstract class InvalidInputException extends IllegalArgumentException {
-    public InvalidInputException(String message) {
-        super(message);
+import util.ErrorMessage;
+
+public class InvalidInputException extends InputException {
+    public InvalidInputException() {
+        super(ErrorMessage.INVALID_INPUT.getMessage());
     }
 }

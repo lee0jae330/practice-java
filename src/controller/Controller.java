@@ -1,5 +1,8 @@
 package controller;
 
+import exception.InvalidAccountException;
+import exception.InvalidInputException;
+import exception.InvalidSelectionException;
 import model.Account;
 import model.BankApplication;
 import model.Selection;
@@ -25,8 +28,7 @@ public class Controller {
     }
 
     public void run() {
-        printMenu();
-        bankProcess(initSelection());
+        selectMenu(initSelection());
     }
 
     private void printMenu() {
@@ -34,14 +36,22 @@ public class Controller {
     }
 
     private int initSelection() {
-        return InputView.enterSelection();
+        printMenu();
+        try{
+            return InputView.enterSelection();
+        } catch (InvalidInputException e) {
+            OutputView.printError(e.getMessage());
+            return initSelection();
+        }
+
     }
 
     private void selectMenu(int number) {
         try {
             Selection selection = new Selection(number);
             bankProcess(selection.getSelectedMenuNumber());
-        } catch (IllegalArgumentException e) {
+        } catch (InvalidSelectionException e) {
+            OutputView.printError(e.getMessage());
             selectMenu(initSelection());
         }
     }
@@ -50,14 +60,16 @@ public class Controller {
         if(selection == 1) {
             createAccount();
         } else if(selection ==2 ){
-
+            showAllAccount();
         } else if(selection ==3 ) {
 
         } else if(selection == 4) {
 
         } else if(selection == 5) {
-
+            OutputView.printExit();
+            return;
         }
+        selectMenu(initSelection());
     }
 
     private void printCreateMsg() {
@@ -72,9 +84,13 @@ public class Controller {
         try{
             bankApplication.addAccount(new Account(accountNumber,accountOwner,initAmount));
             OutputView.printCreateResult();
-        } catch (IllegalArgumentException e) {
+        } catch (InvalidAccountException e) {
+            OutputView.printError(e.getMessage());
             createAccount();
         }
     }
 
+    private void showAllAccount() {
+        OutputView.printAccounts(bankApplication.getAllAccountInformation());
+    }
 }
